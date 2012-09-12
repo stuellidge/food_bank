@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: 
+  disability: false
+  reason: MyText
+  referral_date: 2012-06-14
+
+two:
+  address: 
+  disability: false
+  reason: MyText
+  referral_date: 2012-06-14

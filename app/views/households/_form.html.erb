@@ -1,0 +1,41 @@
+<%= form_for @household, :html => { :class => 'form-horizontal' } do |household_form| %>
+  <h3>Primary Occupant</h3>
+  <br/>
+  <% prepare_occupant(@household.primary_occupant) %>
+  <%= household_form.fields_for :primary_occupant do |occupant_form| %>  
+    <%= render :partial => 'common/occupant_fields', :locals => { :occupant_form => occupant_form } %>
+  <% end %>
+  <hr/>
+  <h3>Address</h3>
+  <br/>
+  <%= household_form.fields_for :address do |address_form| %>
+    <%= render :partial => 'common/address_fields', :locals => { :address_form => address_form } %>
+  <% end %>
+  <hr/>
+  <h3>Household Details</h3>
+  <br/>
+  <div class="control-group">
+    <%= household_form.label :disability, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.check_box :disability, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= household_form.label :reason, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_area :reason, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= household_form.label :referral_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_field :referral_date, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= household_form.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                households_path, :class => 'btn' %>
+  </div>
+<% end %>

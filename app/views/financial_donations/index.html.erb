@@ -1,0 +1,42 @@
+<%- model_class = FinancialDonation.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:donated) %></th>
+      <th><%= model_class.human_attribute_name(:donor_id) %></th>
+      <th><%= model_class.human_attribute_name(:amount) %></th>
+      <th><%= model_class.human_attribute_name(:gift_aid) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @financial_donations.each do |financial_donation| %>
+      <tr>
+        <td><%= link_to financial_donation.id, financial_donation_path(financial_donation) %></td>
+        <td><%= financial_donation.donated %></td>
+        <td><%= financial_donation.donor_id %></td>
+        <td><%= financial_donation.amount %></td>
+        <td><%= financial_donation.gift_aid %></td>
+        <td><%=l financial_donation.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_financial_donation_path(financial_donation), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      financial_donation_path(financial_donation),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_financial_donation_path,
+            :class => 'btn btn-primary' %>

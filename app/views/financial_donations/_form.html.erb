@@ -1,0 +1,44 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
+<% @financial_donation.errors.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <%= content_tag :div, t(name) + " " + msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
+
+<%= form_for @financial_donation, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :donated, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :donated, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :donor_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :donor_id, Donor.all, :id, :name, { :prompt => true } %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :amount, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :amount, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :gift_aid, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :gift_aid, :class => 'check_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                financial_donations_path, :class => 'btn' %>
+  </div>
+<% end %>

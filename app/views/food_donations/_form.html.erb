@@ -1,0 +1,42 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
+<% @food_donation.errors.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <%= content_tag :div, t(name) + " " + msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
+
+<%= form_for @food_donation, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :donated, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :donated, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :donor_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :donor_id, Donor.all, :id, :name, { :prompt => true } %>
+    </div>
+  </div>
+  
+  <%= render :partial => 'food_donation_line_table' %>
+
+  <div class="form-actions">
+    <%= button_to_function t("add_row"), "add_row_to_table()", :class => "btn btn-primary" %>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                food_donations_path, :class => 'btn' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+productCodes = <%= product_codes.html_safe %>
+productNames = <%= product_names.html_safe %>
+productMatrix = <%= product_matrix.html_safe %>
+inverseProductMatrix = <%= inverse_product_matrix.html_safe %>
+</script>

@@ -1,0 +1,33 @@
+<div class="control-group">
+  <%= occupant_form.label :title, :class => 'control-label' %>
+  <div class="controls">
+    <%= occupant_form.text_field :title, :class => 'text_field' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= occupant_form.label :forename, :class => 'control-label' %>
+  <div class="controls">
+    <%= occupant_form.text_field :forename, :class => 'text_field' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= occupant_form.label :surname, :class => 'control-label' %>
+  <div class="controls">
+    <%= occupant_form.text_field :surname, :class => 'text_field' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= occupant_form.label :sex, :class => 'control-label' %>
+  <div class="controls">
+    <%= occupant_form.select :sex, Occupant.SEX.map { |c| [t("#{c}"), c] }, :class => 'text_field' %>
+  </div>
+</div>
+<div class="control-group">
+  <%= occupant_form.label :date_of_birth, :class => 'control-label' %>
+  <div class="controls">
+    <%= occupant_form.text_field :date_of_birth, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+  </div>
+</div>
+<%= occupant_form.fields_for :contact_information do |contact_information_form| %>
+  <%= render :partial => 'common/contact_information_fields', :locals => { :contact_information_form => contact_information_form } %>
+<% end %>

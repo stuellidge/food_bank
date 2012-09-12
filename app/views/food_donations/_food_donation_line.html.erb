@@ -1,0 +1,24 @@
+<%
+if food_donation_line.new_record?
+  prefix = 'new_'
+else
+  prefix = ''
+end
+%>
+<tr id="<%= "#{prefix}food_donation_line_#{index}" %>">
+<%= fields_for "#{prefix}food_donation_lines[#{index}]", food_donation_line do |line_form| %>
+  <%= line_form.fields_for :product, food_donation_line.product do |product_form| %>
+    <td>
+      <%= product_form.hidden_field :id %>
+      <%= product_form.text_field :code, :size => 20, "data-provide" => "typeahead", :class => "product_code_typeahead" %>
+    </td>
+    <td><%= product_form.text_field :name, :size => 30, "data-provide" => "typeahead", :class => "product_name_typeahead" %></td>
+  <% end %>
+  <td><%= line_form.text_field :quantity, :size => 10 %></td>
+  <% if !food_donation_line.new_record? %>
+    <td><%= link_to('Delete', [@food_donation, food_donation_line], :confirm => 'Are you sure?', :method => "delete", :remote => true, :disable_with => 'loading...', :class => "btn btn-danger row-delete") %></td>
+  <% else %>
+    <td><%= link_to_function "Delete", "remove_row(this)", :class => "btn btn-danger" %></td>
+  <% end %>
+<% end %>
+</tr>

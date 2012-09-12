@@ -1,0 +1,10 @@
+<table id="donation_lines_table">
+  <thead>
+    <tr><th>Product Code</th><th>Product Name</th><th>Quantity</th></tr>
+  </thead>
+  <tbody>
+    <% @food_donation.food_donation_lines.each_with_index do |line, index| %>
+      <%= render :partial => 'food_donation_line', :locals => { :food_donation_line => line, :index => index } %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+<%= form_for [@household, @occupant], :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= render :partial => 'common/occupant_fields', :locals => { :occupant_form => f } %>
+  <div class="control-group">
+    <%= f.label :relationship_to_primary, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :relationship_to_primary, OtherOccupant.RELATIONSHIP.inject({}) {|h, (k, v)| h[t(k)] = v; h}, :class => 'text_field' %>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                household_other_occupants_path, :class => 'btn' %>
+  </div>
+<% end %>
