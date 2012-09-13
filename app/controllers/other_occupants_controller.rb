@@ -49,7 +49,7 @@ class OtherOccupantsController < ApplicationController
 
     respond_to do |format|
       if @occupant.save
-        format.html { redirect_to [@household, @occupant], notice: 'Occupant was successfully created.' }
+        format.html { redirect_to :action => :index, notice: 'Occupant was successfully created.' }
         format.json { render json: @occupant, status: :created, location: @occupant }
       else
         format.html { render action: "new" }

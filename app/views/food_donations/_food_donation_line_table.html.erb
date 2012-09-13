@@ -4,7 +4,7 @@
   </thead>
   <tbody>
     <% @food_donation.food_donation_lines.each_with_index do |line, index| %>
-      <%= render :partial => 'food_donation_line', :locals => { :food_donation_line => line, :index => index } %>
+      <%= render :partial => 'food_donation_line', :locals => { :food_donation_line => line, :index => index, :main_form => main_form } %>
     <% end %>
   </tbody>
 </table>

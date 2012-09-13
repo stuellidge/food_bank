@@ -67,7 +67,6 @@ class FoodParcelsController < ApplicationController
     if(h)
       h.each_value do |food_parcel_line|  
         if !is_empty(food_parcel_line)          
-          logger.debug food_parcel_line
           line = @food_parcel.food_parcel_lines.build(food_parcel_line)
         end
       end

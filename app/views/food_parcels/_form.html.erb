@@ -25,7 +25,7 @@
     </div>
   </div>
   
-  <%= render :partial => 'food_parcel_line_table' %>
+  <%= render :partial => 'food_parcel_line_table', :locals => {:main_form => f} %>
   
   <div class="form-actions">
     <%= button_to_function t("add_row"), "add_row_to_table()", :class => "btn btn-primary" %>
