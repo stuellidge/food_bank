@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912203231) do
+ActiveRecord::Schema.define(:version => 20120913151500) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line_1"
@@ -149,5 +149,17 @@ ActiveRecord::Schema.define(:version => 20120912203231) do
 
   add_index "referring_agencies", ["address_id"], :name => "index_referring_agencies_on_address_id"
   add_index "referring_agencies", ["contact_information_id"], :name => "index_referring_agencies_on_contact_information_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "title"
+    t.string   "forename"
+    t.string   "surname"
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
 end

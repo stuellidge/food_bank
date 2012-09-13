@@ -22,8 +22,9 @@ end
 
 gem 'jquery-rails'
 
-gem 'twitter-bootstrap-rails', '>= 2.1.2'
+gem 'twitter-bootstrap-rails', '>= 2.1.3'
 gem 'bootstrap-datepicker-rails'
+gem "sorcery"
 
 # gem 'dynamic_form'
 

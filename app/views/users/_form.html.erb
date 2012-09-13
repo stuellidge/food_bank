@@ -4,54 +4,59 @@
     <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
   </div>
 <% end %>
-<% @address.errors.each do |name, msg| %>
+<% @user.errors.each do |name, msg| %>
   <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
     <%= content_tag :div, t(name) + " " + msg, :id => "flash_#{name}" if msg.is_a?(String) %>
   </div>
 <% end %>
 
-
-<%= form_for @address, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :address_line_1, :class => 'control-label' %>
+    <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :address_line_1, :class => 'text_field' %>
+      <%= f.text_field :title, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :address_line_2, :class => 'control-label' %>
+    <%= f.label :forename, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :address_line_2, :class => 'text_field' %>
+      <%= f.text_field :forename, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :town, :class => 'control-label' %>
+    <%= f.label :surname, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :town, :class => 'text_field' %>
+      <%= f.text_field :surname, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
+    <%= f.label :username, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :city, :class => 'text_field' %>
+      <%= f.text_field :username, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :county, :class => 'control-label' %>
+    <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :county, :class => 'text_field' %>
+      <%= f.text_field :email, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :postcode, :class => 'control-label' %>
+    <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :postcode, :class => 'text_field' %>
+      <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                addresses_path, :class => 'btn' %>
+                users_path, :class => 'btn' %>
   </div>
 <% end %>

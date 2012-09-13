@@ -1,5 +1,8 @@
 FoodBank::Application.routes.draw do
 
+  resources :users
+  resources :user_sessions
+
   resources :food_parcels do
     resources :food_parcel_lines
   end
@@ -73,10 +76,13 @@ FoodBank::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'
-
-  # See how all your routes lay out with "rake routes"
+  # root :to => 'users#index'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'  
+
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  
 end
