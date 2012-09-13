@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login, :only => [:new, :create]
+  (skip_before_filter :require_login, :only => [:new, :create]) if User.count == 0
   
   # GET /users
   # GET /users.json
