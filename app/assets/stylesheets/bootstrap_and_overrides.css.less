@@ -31,3 +31,16 @@ body {
 //
 // Example:
 // @linkColor: #ff0000;
+
+// This makes the text in disabled text boxes black!
+input[type="text"],
+.uneditable-input {
+  display: inline-block;
+  height: @baseLineHeight;
+  padding: 4px 6px;
+  margin-bottom: 9px;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  color: @black;
+  .border-radius(@inputBorderRadius);
+}
