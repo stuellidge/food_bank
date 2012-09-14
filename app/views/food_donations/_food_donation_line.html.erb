@@ -2,6 +2,7 @@
 if food_donation_line.new_record?
   prefix = 'new_'
 %>
+<tr id="<%= "#{prefix}food_donation_line_#{index}" %>">
 <%= fields_for "#{prefix}food_donation_lines[#{index}]", food_donation_line do |line_form| %>
   <%= line_form.fields_for :product, food_donation_line.product do |product_form| %>
     <td>
