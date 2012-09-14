@@ -3,12 +3,22 @@ class Address < ActiveRecord::Base
   
   def to_s
     str = address_line_1
-    str << ", " << address_line_2 unless address_line_2.empty? 
-    str << ", " << town unless town.empty? 
-    str << ", " << city unless city.empty? 
-    str << ", " << county unless county.empty? 
-    str << ", " << postcode unless postcode.empty? 
+    if !address_line_2.empty?
+      str += ", " + address_line_2 
+    end
+    if !town.empty? 
+      str += ", " + town 
+    end
+    if !city.empty? 
+      str += ", " + city 
+    end
+    if !county.empty? 
+      str += ", " + county 
+    end
+    if !postcode.empty? 
+      str += ", " + postcode
+    end
     return str
   end
-  
+
 end

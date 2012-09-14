@@ -9,4 +9,9 @@ class Donor < ActiveRecord::Base
   accepts_nested_attributes_for :contact_information, :allow_destroy => true
   
   attr_accessible :name, :address_attributes, :contact_information_attributes
+  
+  def to_s
+    self.name
+  end
+  
 end

@@ -1,7 +1,7 @@
 class Household < ActiveRecord::Base
   
   def to_s
-    primary_occupant.to_s + ", " + address.to_s
+    self.primary_occupant.to_s + ", " + self.address.to_s
   end
   
   has_one :address, :dependent => :destroy

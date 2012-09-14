@@ -74,10 +74,6 @@ function set_product_code(name_field_id, product_name) {
   $("#" + id_field_id).val(inverseProductMatrix[product_name]['id']);
 }
 
-$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
-    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true});
-});
-
 add_code_typeahead($(".product_code_typeahead"));
 add_name_typeahead($(".product_name_typeahead"));
 

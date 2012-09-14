@@ -9,7 +9,7 @@
   <dt><strong><%= model_class.human_attribute_name(:amount) %>:</strong></dt>
   <dd><%= @expenditure.amount %></dd>
   <dt><strong><%= model_class.human_attribute_name(:purpose) %>:</strong></dt>
-  <dd><%= @expenditure.purpose %></dd>
+  <dd><%= t(Expenditure.PURPOSES.select {|key, value| value == @expenditure.purpose}.flatten[0]) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:reason) %>:</strong></dt>
   <dd><%= @expenditure.reason %></dd>
 </dl>

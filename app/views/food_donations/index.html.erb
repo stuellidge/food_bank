@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to food_donation.id, food_donation_path(food_donation) %></td>
         <td><%= food_donation.donated %></td>
-        <td><%= food_donation.donor_id %></td>
+        <td><%= food_donation.donor %></td>
         <td><%=l food_donation.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

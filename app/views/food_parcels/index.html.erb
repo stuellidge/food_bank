@@ -5,20 +5,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:household_id) %></th>
+      <th><%= model_class.human_attribute_name(:household) %></th>
       <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @food_parcels.each do |food_parcel| %>
       <tr>
-        <td><%= link_to food_parcel.id, food_parcel_path(food_parcel) %></td>
-        <td><%= food_parcel.household_id %></td>
+        <td><%= link_to food_parcel.household, food_parcel_path(food_parcel) %></td>
         <td><%= food_parcel.date %></td>
-        <td><%=l food_parcel.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_food_parcel_path(food_parcel), :class => 'btn btn-mini' %>

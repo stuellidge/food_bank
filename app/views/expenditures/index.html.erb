@@ -10,7 +10,6 @@
       <th><%= model_class.human_attribute_name(:amount) %></th>
       <th><%= model_class.human_attribute_name(:purpose) %></th>
       <th><%= model_class.human_attribute_name(:reason) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -20,9 +19,8 @@
         <td><%= link_to expenditure.id, expenditure_path(expenditure) %></td>
         <td><%= expenditure.date %></td>
         <td><%= expenditure.amount %></td>
-        <td><%= expenditure.purpose %></td>
+        <td><%= t(Expenditure.PURPOSES.select {|key, value| value == expenditure.purpose}.flatten[0]) %></td>
         <td><%= expenditure.reason %></td>
-        <td><%=l expenditure.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_expenditure_path(expenditure), :class => 'btn btn-mini' %>

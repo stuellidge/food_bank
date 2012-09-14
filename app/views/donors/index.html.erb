@@ -5,22 +5,16 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:address_id) %></th>
-      <th><%= model_class.human_attribute_name(:contact_information_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @donors.each do |donor| %>
       <tr>
-        <td><%= link_to donor.id, donor_path(donor) %></td>
-        <td><%= donor.name %></td>
-        <td><%= donor.address_id %></td>
-        <td><%= donor.contact_information_id %></td>
-        <td><%=l donor.created_at %></td>
+        <td><%= link_to donor.name, donor_path(donor) %></td>
+        <td><%= donor.address %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_donor_path(donor), :class => 'btn btn-mini' %>

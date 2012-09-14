@@ -1,5 +1,7 @@
 class FoodParcelLine < ActiveRecord::Base
-  #around_update :update_stock
+  after_update :update_stock
+  after_create :create_stock
+  after_destroy :delete_stock
   
   belongs_to :food_parcel
   belongs_to :product
@@ -10,8 +12,20 @@ class FoodParcelLine < ActiveRecord::Base
   
   private
     def update_stock
-      logger.debug "Updating the fpl! #{self.quantity_changed?} #{self.product.id}"
-      yield
-      logger.debug "Updated the fpl! #{self.quantity_was} #{self.quantity}"
+      if self.quantity_changed?
+        stock_adjustment = self.quantity_was - self.quantity
+        self.product.stock += stock_adjustment
+        self.product.save
+      end      
     end
+    
+    def create_stock
+      self.product.stock -= self.quantity
+      self.product.save
+    end
+    
+    def delete_stock
+      self.product.stock += self.quantity
+      self.product.save
+    end        
 end
