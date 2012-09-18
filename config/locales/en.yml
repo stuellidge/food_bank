@@ -15,3 +15,16 @@ en:
     product:
       name: Product name
   add_row: Add Row
+  activerecord:
+    attributes:
+      household:
+        number_of_adults: "No. adults (16-70)"
+        number_of_oaps: "No. adults (70+)"
+        number_of_babies: "No. infants (0-2)"
+        number_of_small_children: "No. children (2-5)"
+        number_of_children: "No. children (5-16)"
+        baby_nappy_sizes: "Nappy sizes"
+        small_child_nappy_sizes: "Nappy sizes"
+      
+      
+  
