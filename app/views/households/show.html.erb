@@ -21,7 +21,7 @@
               households_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_household_path(@household), :class => 'btn' %>
-  <%= link_to t(:manage_other_occupants), household_other_occupants_path(@household), :class => 'btn' %>
+  <%-# = link_to t(:manage_other_occupants), household_other_occupants_path(@household), :class => 'btn' -%>
   <%= link_to t(:create_food_parcel), new_food_parcel_path(:household => @household), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               household_path(@household),
