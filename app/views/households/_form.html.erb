@@ -27,15 +27,70 @@
   <h3>Household Details</h3>
   <br/>
   <div class="control-group">
+    <%= household_form.label :number_of_adults, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_field :number_of_adults, :class => 'text_field span1' %>
+    </div>
+    <%= household_form.label :number_of_oaps, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_field :number_of_oaps, :class => 'text_field span1' %>
+    </div>
+    <%= household_form.label :number_of_babies, :class => 'control-label' %>
+    <div class="controls controls-row">
+      <%= household_form.text_field :number_of_babies, :class => 'text_field span1' %>
+      <%= household_form.label :baby_nappy_sizes, :class => 'control-label' %>
+      <%= household_form.text_field :baby_nappy_sizes, :class => 'text_field span1' %>
+    </div>
+    <%= household_form.label :number_of_small_children, :class => 'control-label' %>
+    <div class="controls controls-row">
+      <%= household_form.text_field :number_of_small_children, :class => 'text_field span1' %>
+      <%= household_form.label :small_child_nappy_sizes, :class => 'control-label' %>
+      <%= household_form.text_field :small_child_nappy_sizes, :class => 'text_field span1' %>
+    </div>
+    <%= household_form.label :number_of_children, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_field :number_of_children, :class => 'text_field span1' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= household_form.label :disability, :class => 'control-label' %>
     <div class="controls">
       <%= household_form.check_box :disability, :class => 'check_box' %>
     </div>
   </div>
   <div class="control-group">
+    <%= household_form.label :cooking_facilities, :class => 'control-label' %>
+    <div class="controls">
+      <label class="checkbox inline">
+        <%= household_form.check_box :cooker, :class => 'check_box' %><%= t(:cooker) %>
+      </label>
+      <label class="checkbox inline">
+        <%= household_form.check_box :microwave, :class => 'check_box' %><%= t(:microwave) %>
+      </label>
+      <label class="checkbox inline">
+        <%= household_form.check_box :kettle, :class => 'check_box' %><%= t(:kettle) %>
+      </label>      
+      <label class="checkbox inline">
+        <%= household_form.check_box :no_facilities, :class => 'check_box' %><%= t(:no_facilities) %>
+      </label>
+    </div>
+  </div>
+  <div class="control-group">
     <%= household_form.label :reason, :class => 'control-label' %>
     <div class="controls">
-      <%= household_form.text_area :reason, :class => 'text_area' %>
+      <%= household_form.text_area :reason, :rows => 3, :class => 'text_area span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= household_form.label :dietary_requirements, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_area :dietary_requirements, :rows => 3, :class => 'text_area span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= household_form.label :comments, :class => 'control-label' %>
+    <div class="controls">
+      <%= household_form.text_area :comments, :rows => 3, :class => 'text_area span5' %>
     </div>
   </div>
   <div class="control-group">

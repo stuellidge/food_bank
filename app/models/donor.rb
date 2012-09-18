@@ -10,6 +10,8 @@ class Donor < ActiveRecord::Base
   
   attr_accessible :name, :address_attributes, :contact_information_attributes
   
+  validates :name, :presence => true
+  
   def to_s
     self.name
   end

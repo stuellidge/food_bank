@@ -18,6 +18,7 @@ class HouseholdsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @household }
+      format.xml { render xml: @household }
     end
   end
 
@@ -25,6 +26,7 @@ class HouseholdsController < ApplicationController
   # GET /households/new.json
   def new
     @household = Household.new
+    @household.referral_date = Date.today
     @household.build_address
     @household.build_primary_occupant
     @referral_date = Date.today

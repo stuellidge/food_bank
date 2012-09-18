@@ -5,4 +5,5 @@ class FoodDonation < ActiveRecord::Base
   accepts_nested_attributes_for :food_donation_lines, :allow_destroy => true
   
   validates :donor, :presence => true
+  validates_associated :food_donation_lines
 end
