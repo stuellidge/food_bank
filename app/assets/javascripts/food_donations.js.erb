@@ -55,9 +55,13 @@ function add_name_typeahead(elem) {
   }
 }
 
-function select_product_quantity(field_id) {
+function select_product_quantity(field_id) {  
+  retrieve_product_quantity_element(field_id).focus();
+}
+
+function retrieve_product_quantity_element(field_id) {
   quantity_field_id = field_id.replace(/_product_attributes.+$/,"_quantity");
-  $("#" + quantity_field_id).focus();
+  return $("#" + quantity_field_id)
 }
 
 function set_product_name(code_field_id, product_code) {
@@ -74,9 +78,62 @@ function set_product_code(name_field_id, product_name) {
   $("#" + id_field_id).val(inverseProductMatrix[product_name]['id']);
 }
 
+function get_product_name(productCode) {
+  var productName = '';
+
+  if(productCode in productMatrix) {
+    productName = productMatrix[productCode]['name'];
+  } else {
+    productName = $("#scanner-name").val();
+    if(productName != '') {
+      h = { name : productName, id : ''}
+      productMatrix[productCode] = h;
+    }    
+  }
+  
+  return productName;
+}
+
 add_code_typeahead($(".product_code_typeahead"));
 add_name_typeahead($(".product_name_typeahead"));
 
 $('a.row-delete[data-method="delete"]').live('ajax:success', function(event){
   remove_row(this);
 });
+
+$('#scanner-form').submit(function(e) {
+  try {
+    var productCode = $("#scanner-code").val();
+    var productName = get_product_name(productCode);
+
+    if(productName!='') {
+      $("#scanner-controls").removeClass("error");
+      var productLines = $("#donation_lines_table tr :text[value='" + productCode + "']");
+      
+      if(productLines.length > 0) {
+        qtyElem = retrieve_product_quantity_element($(productLines[0]).attr('id'));
+        var quantity = parseInt(qtyElem.val());
+        qtyElem.val(quantity + 1);
+      } else {
+        var inputs = $("#donation_lines_table tr:last input:text");
+        $(inputs[0]).val(productCode);        
+        $(inputs[1]).val(productName);
+        $(inputs[2]).val(1);
+        $("#donation_lines_table tr:last input:hidden").val(productMatrix[productCode]['id']);
+        add_row_to_table();
+      }
+      
+      $("#scanner-code").val("");
+      $("#scanner-name").val("");
+      $("#scanner-code").focus();
+    } else {
+      $("#scanner-controls").addClass("error");
+      $("#scanner-name").focus();
+    }
+  } catch (err) {
+    console.log(err);
+  } 
+  return false;
+});
+
+$("#scanner-code").focus();

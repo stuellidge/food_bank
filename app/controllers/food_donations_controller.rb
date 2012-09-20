@@ -49,11 +49,8 @@ class FoodDonationsController < ApplicationController
   # POST /food_donations
   # POST /food_donations.json
   def create    
-    @food_donation = FoodDonation.new(params[:food_donation])
-    process_new_food_donation_lines(params[:new_food_donation_lines])
-    
     respond_to do |format|
-      if @food_donation.save
+      if create_food_donation
         format.html { redirect_to @food_donation, notice: 'Food donation was successfully created.' }
         format.json { render json: @food_donation, status: :created, location: @food_donation }
       else
@@ -88,6 +85,21 @@ class FoodDonationsController < ApplicationController
       return false
     end
   end
+  
+  def create_food_donation
+    begin
+      @food_donation = FoodDonation.new(params[:food_donation])
+      process_new_food_donation_lines(params[:new_food_donation_lines])
+      return @food_donation.save
+    rescue ActiveRecord::RecordInvalid => exc
+      @food_donation.errors[:unexpected] = exc.message
+      if @food_donation.food_donation_lines.empty?
+        @food_donation.food_donation_lines.build
+        @food_donation.food_donation_lines.last.build_product      
+      end
+      return false
+    end
+  end  
 
   # DELETE /food_donations/1
   # DELETE /food_donations/1.json

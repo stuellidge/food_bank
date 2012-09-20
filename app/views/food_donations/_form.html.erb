@@ -1,3 +1,14 @@
+<form class="form-horizontal" id="scanner-form">
+  <div class="control-group" id="scanner-controls">
+    <label class="control-label">Scanner Controls</label>
+    <div class="controls">
+      <input id="scanner-code" name="scanner-code" type="text" class="input-med" placeholder="Click here and use scanner...">
+      <input id="scanner-name" name="scanner-name" type="text" class="input-med" placeholder="Enter product name here...">
+      <input id="scanner-submit" name="scanner-submit" type="submit" value="Add Product" class="btn btn-primary">
+    </div>
+  </div>
+</form>
+<hr/>
 <% flash.each do |name, msg| %>
   <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
     <a class="close" data-dismiss="alert">&#215;</a>
