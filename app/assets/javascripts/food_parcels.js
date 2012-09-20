@@ -55,10 +55,15 @@ function add_name_typeahead(elem) {
   }
 }
 
-function select_product_quantity(field_id) {
-  quantity_field_id = "new_food_parcel_lines_" + field_id.match(/\d+/) + "_quantity"
-  $("#" + quantity_field_id).focus();
+function select_product_quantity(field_id) {  
+  retrieve_product_quantity_element(field_id).focus();
 }
+
+function retrieve_product_quantity_element(field_id) {
+  quantity_field_id = "new_food_parcel_lines_" + field_id.match(/\d+/) + "_quantity"
+  return $("#" + quantity_field_id)
+}
+
 
 function set_product_name(code_field_id, product_code) {
   name_field_id = code_field_id.replace("_code", "_name");
@@ -81,3 +86,39 @@ add_name_typeahead($(".product_name_typeahead"));
 $('a.row-delete[data-method="delete"]').live('ajax:success', function(event){
   remove_row(this);
 });
+
+$('#scanner-form').submit(function(e) {
+  try {
+    var productCode = $("#scanner-code").val();
+    if(productCode in productMatrix) { 
+      $("#scanner-error").hide();           
+      $("#scanner-controls").removeClass("error");
+      var productLines = $("#parcel_lines_table tr :text[value='" + productCode + "']");
+      if(productLines.length > 0) {
+        qtyElem = $($("#parcel_lines_table tr :text[value='" + productCode + "']").closest("tr").find(":text")[2]);
+        var quantity = parseInt(qtyElem.val());
+        qtyElem.val(quantity + 1);
+      } else {
+        var inputs = $("#parcel_lines_table tr:last input:text");
+        $(inputs[0]).val(productCode);        
+        $(inputs[1]).val(productMatrix[productCode]['name']);
+        $(inputs[2]).val(1);
+        $("#parcel_lines_table tr:last input:hidden").val(productMatrix[productCode]['id']);
+        add_row_to_table();
+      }
+      
+      $("#scanner-code").val("");
+      $("#scanner-name").val("");
+      $("#scanner-code").focus();
+    } else {
+      $("#scanner-code").val("");
+      $("#scanner-controls").addClass("error");
+      $("#scanner-error").show();      
+    }
+  } catch (err) {
+    console.log(err);
+  } 
+  return false;
+});
+
+$("#scanner-code").focus();
