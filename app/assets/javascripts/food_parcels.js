@@ -98,6 +98,7 @@ $('#scanner-form').submit(function(e) {
         qtyElem = $($("#parcel_lines_table tr :text[value='" + productCode + "']").closest("tr").find(":text")[2]);
         var quantity = parseInt(qtyElem.val());
         qtyElem.val(quantity + 1);
+        qtyElem.effect("highlight", {}, 1000);        
       } else {
         var inputs = $("#parcel_lines_table tr:last input:text");
         $(inputs[0]).val(productCode);        

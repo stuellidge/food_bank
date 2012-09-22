@@ -114,6 +114,7 @@ $('#scanner-form').submit(function(e) {
         qtyElem = retrieve_product_quantity_element($(productLines[0]).attr('id'));
         var quantity = parseInt(qtyElem.val());
         qtyElem.val(quantity + 1);
+        qtyElem.effect("highlight", {}, 1000);
       } else {
         var inputs = $("#donation_lines_table tr:last input:text");
         $(inputs[0]).val(productCode);        
