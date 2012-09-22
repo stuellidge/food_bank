@@ -12,3 +12,7 @@
  *= require_tree .
  *= require bootstrap-datepicker
  */
+
+ input[type="text"].in_error {
+   border: 2px solid #B94A48;
+ }

@@ -4,14 +4,15 @@ if food_donation_line.new_record?
 %>
 <tr id="<%= "#{prefix}food_donation_line_#{index}" %>">
 <%= fields_for "#{prefix}food_donation_lines[#{index}]", food_donation_line do |line_form| %>
+  <% errs = food_donation_line.errors %>
   <%= line_form.fields_for :product, food_donation_line.product do |product_form| %>
     <td>
       <%= product_form.hidden_field :id %>
-      <%= product_form.text_field :code, :size => 20, "data-provide" => "typeahead", :class => "product_code_typeahead" %>
+      <%= product_form.text_field :code, :size => 20, "data-provide" => "typeahead", :class => "product_code_typeahead " + field_error(errs, 'product.code') %>
     </td>
-    <td><%= product_form.text_field :name, :size => 30, "data-provide" => "typeahead", :class => "product_name_typeahead" %></td>
+    <td><%= product_form.text_field :name, :size => 30, "data-provide" => "typeahead", :class => "product_name_typeahead " + field_error(errs, 'product.name') %></td>
   <% end %>
-  <td><%= line_form.text_field :quantity, :size => 10 %></td>
+  <td><%= line_form.text_field :quantity, :size => 10, :class => field_error(errs, 'quantity') %></td>
   <% if !food_donation_line.new_record? %>
     <td><%= link_to('Delete', [@food_donation, food_donation_line], :confirm => 'Are you sure?', :method => "delete", :remote => true, :disable_with => 'loading...', :class => "btn btn-danger row-delete") %></td>
   <% else %>
@@ -25,14 +26,15 @@ else
 %>
 <tr id="<%= "#{prefix}food_donation_line_#{index}" %>">
 <%= main_form.fields_for "food_donation_lines", food_donation_line do |line_form| %>
+  <% errs = food_donation_line.errors %>
   <%= line_form.fields_for :product, food_donation_line.product do |product_form| %>
     <td>
       <%= product_form.hidden_field :id %>
-      <%= product_form.text_field :code, :size => 20, "data-provide" => "typeahead", :class => "product_code_typeahead", :disabled => "true" %>
+      <%= product_form.text_field :code, :size => 20, "data-provide" => "typeahead", :class => "product_code_typeahead " + field_error(errs, 'product.code'), :disabled => "true" %>
     </td>
-    <td><%= product_form.text_field :name, :size => 30, "data-provide" => "typeahead", :class => "product_name_typeahead", :disabled => "true"  %></td>
+    <td><%= product_form.text_field :name, :size => 30, "data-provide" => "typeahead", :class => "product_code_typeahead " + field_error(errs, 'product.name'), :disabled => "true"  %></td>
   <% end %>
-  <td><%= line_form.text_field :quantity, :size => 10 %></td>
+  <td><%= line_form.text_field :quantity, :size => 10, :class => field_error(errs, 'quantity') %></td>
   <% if !food_donation_line.new_record? %>
     <td><%= link_to('Delete', [@food_donation, food_donation_line], :confirm => 'Are you sure?', :method => "delete", :remote => true, :disable_with => 'loading...', :class => "btn btn-danger row-delete") %></td>
   <% else %>

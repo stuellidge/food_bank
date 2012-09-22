@@ -16,4 +16,12 @@ module FoodDonationsHelper
     product_matrix_array =  Product.all.map { |p| [p.name, {:id => p.id, :code => p.code}] }.flatten
     Hash[*product_matrix_array].to_json
   end
+  
+  def field_error(errors, key)
+    if errors[key].length > 0
+      " in_error "
+    else      
+      ""
+    end
+  end
 end

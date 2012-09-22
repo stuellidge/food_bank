@@ -126,7 +126,7 @@ class FoodDonationsController < ApplicationController
   end
   
   def find_or_create_product(product_attributes)    
-    Product.where(:id => product_attributes.delete(:id)).first_or_create!(product_attributes)
+    Product.where(:id => product_attributes[:id]).first_or_create(product_attributes)
   end
   
   def is_empty(h) 
