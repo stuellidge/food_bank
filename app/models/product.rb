@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :code, :name, :stock
+  attr_accessible :code, :name, :stock, :category
   
   validates :name, :presence => true
   validates :code, :uniqueness => true
