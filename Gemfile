@@ -33,6 +33,9 @@ gem 'twitter-bootstrap-rails', '>= 2.1.3'
 gem 'bootstrap-datepicker-rails'
 gem "sorcery"
 
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
 # gem 'dynamic_form'
 
 # To use ActiveModel has_secure_password
