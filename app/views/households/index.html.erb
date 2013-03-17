@@ -2,6 +2,18 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<form class="form-horizontal" id="household-form">
+  <div class="controls">
+    <input id="household-form-typeahead" name="name" type="text" class="input-med" data-provide="typeahead" autocomplete="off"  placeholder="Type here to find a household...">
+    <input id="household-form-id" name="id" type="hidden" autocomplete="off">
+    <input id="household-form-submit" type="submit" value="Go To Household" class="btn btn-primary">
+  </div>
+</form>
+
+<%= javascript_tag "var autocomplete_items = #{ @autocomplete_items.to_json };" %>
+<%= javascript_tag "var household_matrix = #{ @household_matrix.to_json };" %>
+
 <table class="table table-striped">
   <thead>
     <tr>
