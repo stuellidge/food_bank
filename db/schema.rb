@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(:version => 20130317154155) do
   create_table "food_donations", :force => true do |t|
     t.date     "donated"
     t.integer  "donor_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.decimal  "weight"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.decimal  "weight",     :default => 0.0, :null => false
   end
 
   add_index "food_donations", ["donor_id"], :name => "index_food_donations_on_donor_id"
