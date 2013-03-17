@@ -25,6 +25,13 @@
       <%= f.collection_select :household_id, Household.find(:all, :include => "primary_occupant", :order => "occupants.surname, occupants.forename"), :id, :to_s, { :prompt => true } %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label :weight, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :weight, :class => 'text_field' %>
+    </div>
+  </div>
   
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

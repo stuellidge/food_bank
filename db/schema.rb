@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317161841) do
+ActiveRecord::Schema.define(:version => 20130317162728) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line_1"
@@ -78,8 +78,9 @@ ActiveRecord::Schema.define(:version => 20130317161841) do
   create_table "food_parcels", :force => true do |t|
     t.integer  "household_id"
     t.date     "date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.decimal  "weight",       :default => 0.0, :null => false
   end
 
   add_index "food_parcels", ["household_id"], :name => "index_food_parcels_on_household_id"
