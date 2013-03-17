@@ -26,8 +26,6 @@ class FoodDonationsController < ApplicationController
   def new
     @food_donation = FoodDonation.new
     @food_donation.donated = Date.today
-    @food_donation.food_donation_lines.build
-    @food_donation.food_donation_lines.last.build_product
     
     if params[:donor]
       @food_donation.donor = Donor.find(params[:donor])
@@ -42,8 +40,6 @@ class FoodDonationsController < ApplicationController
   # GET /food_donations/1/edit
   def edit
     @food_donation = FoodDonation.find(params[:id])
-    @food_donation.food_donation_lines.build
-    @food_donation.food_donation_lines.last.build_product
   end
 
   # POST /food_donations
@@ -78,7 +74,6 @@ class FoodDonationsController < ApplicationController
   
   def update_food_donation
     begin
-      process_new_food_donation_lines(params[:new_food_donation_lines])
       return @food_donation.update_attributes(params[:food_donation])
     rescue ActiveRecord::RecordInvalid => exc
       @food_donation.errors[:unexpected] = exc.message
@@ -89,14 +84,9 @@ class FoodDonationsController < ApplicationController
   def create_food_donation
     begin
       @food_donation = FoodDonation.new(params[:food_donation])
-      process_new_food_donation_lines(params[:new_food_donation_lines])
       return @food_donation.save
     rescue ActiveRecord::RecordInvalid => exc
       @food_donation.errors[:unexpected] = exc.message
-      if @food_donation.food_donation_lines.empty?
-        @food_donation.food_donation_lines.build
-        @food_donation.food_donation_lines.last.build_product      
-      end
       return false
     end
   end  
@@ -112,23 +102,7 @@ class FoodDonationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  def process_new_food_donation_lines(h)    
-    if(h)
-      h.each_value do |food_donation_line|  
-        if !is_empty(food_donation_line)          
-          product = find_or_create_product(food_donation_line.delete(:product_attributes))
-          line = @food_donation.food_donation_lines.build(food_donation_line)
-          line.product = product
-        end
-      end
-    end
-  end
-  
-  def find_or_create_product(product_attributes)    
-    Product.where(:id => product_attributes[:id]).first_or_create(product_attributes)
-  end
-  
+    
   def is_empty(h) 
     h.each_value { |value|
       if value.is_a?(Hash) 

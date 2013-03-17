@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,7 +29,9 @@ end
 
 gem 'jquery-rails'
 
-gem 'twitter-bootstrap-rails', '>= 2.1.3'
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+
 gem 'bootstrap-datepicker-rails'
 gem "sorcery"
 

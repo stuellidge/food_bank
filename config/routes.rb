@@ -10,7 +10,7 @@ FoodBank::Application.routes.draw do
   resources :expenditures
 
   resources :food_donations do
-    resources :food_donation_lines
+
   end
 
   resources :products
