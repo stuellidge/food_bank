@@ -26,9 +26,7 @@ class FoodParcelsController < ApplicationController
   def new
     @food_parcel = FoodParcel.new
     @food_parcel.date = Date.today
-    @food_parcel.food_parcel_lines.build
-    @food_parcel.food_parcel_lines.last.build_product
-    
+        
     if params[:household]
       @food_parcel.household = Household.find(params[:household])
     end
@@ -42,15 +40,12 @@ class FoodParcelsController < ApplicationController
   # GET /food_parcels/1/edit
   def edit
     @food_parcel = FoodParcel.find(params[:id])
-    @food_parcel.food_parcel_lines.build
-    @food_parcel.food_parcel_lines.last.build_product
   end
 
   # POST /food_parcels
   # POST /food_parcels.json
   def create
     @food_parcel = FoodParcel.new(params[:food_parcel])
-    process_new_food_parcel_lines(params[:new_food_parcel_lines])
 
     respond_to do |format|
       if @food_parcel.save
@@ -63,21 +58,11 @@ class FoodParcelsController < ApplicationController
     end
   end
   
-  def process_new_food_parcel_lines(h)
-    if(h)
-      h.each_value do |food_parcel_line|  
-        if !is_empty(food_parcel_line)          
-          line = @food_parcel.food_parcel_lines.build(food_parcel_line)
-        end
-      end
-    end
-  end  
 
   # PUT /food_parcels/1
   # PUT /food_parcels/1.json
   def update
     @food_parcel = FoodParcel.find(params[:id])
-    process_new_food_parcel_lines(params[:new_food_parcel_lines])
 
     respond_to do |format|
       if @food_parcel.update_attributes(params[:food_parcel])

@@ -1,13 +1,3 @@
-<form class="form-horizontal" id="scanner-form">
-  <div class="control-group" id="scanner-controls">
-    <label class="control-label">Scanner Controls</label>
-    <div class="controls">
-      <input id="scanner-code" name="scanner-code" type="text" class="input-med" placeholder="Click here and use scanner...">
-      <input id="scanner-submit" name="scanner-submit" type="submit" value="Add Product" class="btn btn-primary">
-      <span id="scanner-error" class="help-inline" style="display: none">The product code is not recognised</span>
-    </div>
-  </div>
-</form>
 <hr/>
 <% flash.each do |name, msg| %>
   <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
@@ -36,19 +26,9 @@
     </div>
   </div>
   
-  <%= render :partial => 'food_parcel_line_table', :locals => {:main_form => f} %>
-  
   <div class="form-actions">
-    <%= button_to_function t("add_row"), "add_row_to_table()", :class => "btn btn-primary" %>
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 food_parcels_path, :class => 'btn' %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-productCodes = <%= product_codes.html_safe %>
-productNames = <%= product_names.html_safe %>
-productMatrix = <%= product_matrix.html_safe %>
-inverseProductMatrix = <%= inverse_product_matrix.html_safe %>
-</script>

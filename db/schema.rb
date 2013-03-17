@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317154155) do
+ActiveRecord::Schema.define(:version => 20130317161841) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line_1"
@@ -74,17 +74,6 @@ ActiveRecord::Schema.define(:version => 20130317154155) do
   end
 
   add_index "food_donations", ["donor_id"], :name => "index_food_donations_on_donor_id"
-
-  create_table "food_parcel_lines", :force => true do |t|
-    t.integer  "food_parcel_id"
-    t.integer  "product_id"
-    t.integer  "quantity"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "food_parcel_lines", ["food_parcel_id"], :name => "index_food_parcel_lines_on_food_parcel_id"
-  add_index "food_parcel_lines", ["product_id"], :name => "index_food_parcel_lines_on_product_id"
 
   create_table "food_parcels", :force => true do |t|
     t.integer  "household_id"

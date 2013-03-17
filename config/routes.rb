@@ -4,7 +4,7 @@ FoodBank::Application.routes.draw do
   resources :user_sessions
 
   resources :food_parcels do
-    resources :food_parcel_lines
+    
   end
 
   resources :expenditures
