@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317145416) do
+ActiveRecord::Schema.define(:version => 20130317154155) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line_1"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130317145416) do
     t.integer  "donor_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.decimal  "weight"
   end
 
   add_index "food_donations", ["donor_id"], :name => "index_food_donations_on_donor_id"
