@@ -15,6 +15,22 @@
   <dt><strong><%= model_class.human_attribute_name(:referral_date) %>:</strong></dt>
   <dd><%= @household.referral_date %></dd>
 </dl>
+
+<h4>Food Parcels</h4>
+
+<table border="2" width="50%">
+	<tr>
+		<th>Date</th><th>Weight</th><th/>
+	</tr>
+	<% for parcel in @household.food_parcels do %>
+		<tr>
+			<td align="center"><%= parcel.date %></td>
+			<td align="center"><%= parcel.weight %></td>
+			<td align="center"><%= link_to 'View...', food_parcel_path(parcel) %></td>
+		</tr>
+	<% end %>
+</table>
+
 <br/>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
