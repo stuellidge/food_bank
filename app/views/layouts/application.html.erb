@@ -61,15 +61,16 @@
                   <li class="nav-header">Food Donations</li>
                   <li><%= link_to "New Donation", :controller => :food_donations, :action => :new  %></li>
                   <li><%= link_to "Donation Admin", :food_donations  %></li>
-                  <li class="nav-header">Cash Management</li>
+                  <!--li class="nav-header">Cash Management</li>
                   <li><%= link_to "New Donation", :controller => :financial_donations, :action => :new  %></li>
                   <li><%= link_to "New Expenditure", :controller => :expenditures, :action => :new  %></li>
                   <li><%= link_to "Donation Admin", :financial_donations  %></li>
-                  <li><%= link_to "Expenditure Admin", :expenditures  %></li>
+                  <li><%= link_to "Expenditure Admin", :expenditures  %></li-->
                   <li class="nav-header">Manage Food Parcels</li>
                   <li><%= link_to "Create Parcel", :controller => :food_parcels, :action => :new  %></li>                  
                   <li><%= link_to "Parcel Admin", :food_parcels  %></li>
-                  <li><%= link_to "Product Admin", :products  %></li>
+                  <li class="nav-header">Reporting...</li>
+                  <li><%= link_to "Current Stock Weight", :controller => :reporting, :action => :weight_total  %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->

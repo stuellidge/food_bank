@@ -25,6 +25,10 @@ FoodBank::Application.routes.draw do
   resources :households do
     resources :other_occupants
   end
+  
+  match 'reporting/weight_total', :to => 'reporting#weight_total', :via => :get
+  match 'reporting/update_weight', :to => 'reporting#update_weight', :via => :post
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
