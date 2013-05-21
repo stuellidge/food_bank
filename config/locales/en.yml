@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  new_household: "New Household"
   hello: "Hello world"
   manage_other_occupants: "Manage other occupants"
   male: "Male"

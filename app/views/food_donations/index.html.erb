@@ -8,16 +8,20 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:donated) %></th>
       <th><%= model_class.human_attribute_name(:donor_id) %></th>
+      <th><%= model_class.human_attribute_name(:weight) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
+	<%= page_entries_info @food_donations %>
+	<%= will_paginate @food_donations, :renderer => BootstrapPagination::Rails %>
     <% @food_donations.each do |food_donation| %>
       <tr>
         <td><%= link_to food_donation.id, food_donation_path(food_donation) %></td>
         <td><%= food_donation.donated %></td>
         <td><%= food_donation.donor %></td>
+        <td><%= food_donation.weight %></td>
         <td><%=l food_donation.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

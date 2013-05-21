@@ -2,7 +2,7 @@ class FoodDonationsController < ApplicationController
   # GET /food_donations
   # GET /food_donations.json
   def index
-    @food_donations = FoodDonation.all
+    @food_donations = FoodDonation.paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb

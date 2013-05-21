@@ -3,7 +3,7 @@ class FoodParcel < ActiveRecord::Base
   after_create :create_weight
   after_destroy :delete_weight  
   
-  belongs_to :household
+  belongs_to :household, :counter_cache => true
   attr_accessible :date, :household_id, :weight
   
   validates :household, :presence => true

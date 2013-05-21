@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412155427) do
+ActiveRecord::Schema.define(:version => 20130521211037) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address_line_1"
@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20130412155427) do
     t.boolean  "disability"
     t.text     "reason"
     t.date     "referral_date"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "primary_occupant_id"
     t.integer  "number_of_adults"
     t.integer  "number_of_oaps"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20130412155427) do
     t.boolean  "kettle"
     t.boolean  "no_facilities"
     t.text     "comments"
+    t.integer  "food_parcels_count",       :default => 0, :null => false
   end
 
   add_index "households", ["address_id"], :name => "index_households_on_address_id"

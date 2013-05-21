@@ -4,10 +4,12 @@
 </div>
 
 <form class="form-horizontal" id="household-form">
-  <div class="controls">
+  <div class="household_controls">
     <input id="household-form-typeahead" name="name" type="text" class="input-med" data-provide="typeahead" autocomplete="off"  placeholder="Type here to find a household...">
     <input id="household-form-id" name="id" type="hidden" autocomplete="off">
     <input id="household-form-submit" type="submit" value="Go To Household" class="btn btn-primary">
+    <%= link_to t('.new_household', :default => t("helpers.links.new_household")),
+                new_household_path, :class => 'btn btn-primary' %>
   </div>
 </form>
 
@@ -19,6 +21,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:primary_occupant) %></th>
       <th><%= model_class.human_attribute_name(:address) %></th>
+      <th><%= model_class.human_attribute_name(:parcels) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -28,6 +31,7 @@
       <tr>
         <td><%= link_to household.primary_occupant, household_path(household) %></td>
         <td><%= link_to household.address, household_path(household) %></td>
+        <td><%= link_to household.food_parcels_count, household_path(household) %></td>
         <td><%=l household.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
