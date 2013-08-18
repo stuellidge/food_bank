@@ -1,0 +1,50 @@
+<div class="page-header">
+  <h1>Parcels By Time Period And Postcode</h1>
+</div>
+
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
+
+<%= form_tag url_for(controller => :reporting, :action => :parcels_by_time_period_and_postcode), :class=>"form-horizontal" do %>
+
+  <div class="control-group">
+    <%= label_tag(:from_date, t(:from_date), :class => 'control-label') %>
+    <div class="controls">
+      <%= text_field_tag :from_date, @from_date, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :to_date, t(:to_date), :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :to_date, @to_date, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <em><%= label_tag :postcode_pattern, t(:postcode_pattern) + ' (e.g. TW15%)', :class => 'control-label' %></em>
+    <div class="controls">
+      <%= text_field_tag :postcode_pattern, @postcode_pattern, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="ruport">
+	<% if((defined? @table) && !@table.data.empty?) %>
+		<strong>Total number of parcels: <%= @parcel_count %></strong><br/>
+		<strong>Total weight of parcels: <%= @total_weight %></strong><br/>
+		<br/>
+		<%= @table.to_html.html_safe %>
+	<% else %>
+		<em>No data to display</em>
+	<% end %>
+</div>
+<br/>
