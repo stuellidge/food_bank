@@ -1,4 +1,6 @@
 class FoodParcel < ActiveRecord::Base
+  acts_as_reportable
+  
   after_update :update_weight
   after_create :create_weight
   after_destroy :delete_weight  
@@ -8,6 +10,10 @@ class FoodParcel < ActiveRecord::Base
   
   validates :household, :presence => true
   validates_numericality_of :weight, :greater_than => 0
+  
+  def household_name
+    self.household.to_s
+  end
   
   private
     def update_weight

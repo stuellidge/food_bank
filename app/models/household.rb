@@ -1,4 +1,5 @@
 class Household < ActiveRecord::Base
+  acts_as_reportable
   
   def to_s
     self.primary_occupant.to_s + ", " + self.address.to_s

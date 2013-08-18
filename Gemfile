@@ -38,6 +38,9 @@ gem "sorcery"
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+gem 'ruport'
+gem 'acts_as_reportable'
+
 # gem 'dynamic_form'
 
 # To use ActiveModel has_secure_password
