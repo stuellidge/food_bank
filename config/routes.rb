@@ -30,6 +30,7 @@ FoodBank::Application.routes.draw do
   match 'reporting/update_weight', :to => 'reporting#update_weight', :via => :post
   match 'reporting/parcels_by_time_period', :to => 'reporting#parcels_by_time_period', :via => [:get, :post]
   match 'reporting/parcels_by_time_period_and_postcode', :to => 'reporting#parcels_by_time_period_and_postcode', :via => [:get, :post]  
+  match 'reporting/households_with_multiple_parcels_by_time_period', :to => 'reporting#households_with_multiple_parcels_by_time_period', :via => [:get, :post]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

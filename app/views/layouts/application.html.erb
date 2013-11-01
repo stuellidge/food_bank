@@ -69,10 +69,11 @@
                   <!--li class="nav-header">Manage Food Parcels</li>
                   <li><%= link_to "Create Parcel", :controller => :food_parcels, :action => :new  %></li>                  
                   <li><%= link_to "Parcel Admin", :food_parcels  %></li-->
-                  <li class="nav-header">Reporting...</li>
+                  <li class="nav-header">Reporting...</li> 
                   <li><%= link_to "Current Stock Weight", :controller => :reporting, :action => :weight_total  %></li>
                   <li><%= link_to "Parcels By Time Period", :controller => :reporting, :action => :parcels_by_time_period  %></li>
                   <li><%= link_to "Parcels By Time Period And Postcode", :controller => :reporting, :action => :parcels_by_time_period_and_postcode  %></li>
+                  <li><%= link_to "Households With Multiple Parcels", :controller => :reporting, :action => :households_with_multiple_parcels_by_time_period  %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
