@@ -80,7 +80,7 @@ class ReportingController < ApplicationController
       
       conditions_string = 'food_parcels.created_at >= :from_date AND food_parcels.created_at <= :to_date'
       conditions_values = {:from_date => @from_date, :to_date => @to_date}
-      join = Household.joins(:food_parcels).select("households.id, count(food_parcels.id) as food_parcels_count").where(conditions_string, conditions_values).group(:household_id).having("count(food_parcels.id)>1")
+      join = Household.joins(:food_parcels).select("households.id, count(food_parcels.id) as food_parcels_count").where(conditions_string, conditions_values).group("households.id").having("count(food_parcels.id)>1")
       join.each do |household|
         count = household.food_parcels_count
         household.reload
