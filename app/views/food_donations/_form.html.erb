@@ -20,7 +20,7 @@
   <div class="control-group">
     <%= f.label :donor_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :donor_id, Donor.all, :id, :name, { :prompt => true } %>
+      <%= f.collection_select :donor_id, Donor.order(:name), :id, :name, { :prompt => true } %>
     </div>
   </div> 
   <div class="control-group">
