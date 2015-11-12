@@ -116,11 +116,11 @@ class ReportingController < ApplicationController
         end
       end
       
-      join = Donor.joins(:food_donations).select("donors.id as id, donors.name as donor_name, count(food_donations.id) as food_donations_count").where(conditions_string, conditions_values).group("donors.id").having("count(food_donations.id)>0")
+      join = Donor.joins(:food_donations).select("donors.id as id, donors.name as donor_name, count(food_donations.id) as food_donations_count, sum(food_donations.weight) as weight").where(conditions_string, conditions_values).group("donors.id").having("count(food_donations.id)>0").order("weight DESC, food_donations_count DESC")
       
       
-      @table = join.report_table(:all, :only => [:donor_name, :food_donations_count])
-      @table.column_names = ['Donor', 'Food Donations Count']
+      @table = join.report_table(:all, :only => [:donor_name, :food_donations_count, :weight])
+      @table.column_names = ['Donor', 'Food Donations Count', 'Weight']
     end
       
   end
