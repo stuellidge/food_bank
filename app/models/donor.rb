@@ -1,4 +1,6 @@
 class Donor < ActiveRecord::Base
+  acts_as_reportable
+  
   has_many :food_donations, :dependent => :destroy
   has_many :financial_donations, :dependent => :destroy
 
