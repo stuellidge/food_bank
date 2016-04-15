@@ -20,7 +20,7 @@ class ReportingController < ApplicationController
         
     if(params.has_key? :from_date)
       @from_date = params[:from_date]
-      if(!params.has_key? :to_date)
+      if(params.has_key? :to_date)
         @to_date = params[:to_date]
       end
       

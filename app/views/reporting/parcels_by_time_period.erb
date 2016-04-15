@@ -35,7 +35,7 @@
 		<strong>Total number of parcels: <%= @parcel_count %></strong><br/>
 		<strong>Total weight of parcels: <%= @total_weight %></strong><br/>
 		<br/>
-		<%= @table.to_html.html_safe %>
+		<%= @table.to_html.sub("<table>", "<table class='table'>").html_safe %>
 	<% else %>
 		<em>No data to display</em>
 	<% end %>

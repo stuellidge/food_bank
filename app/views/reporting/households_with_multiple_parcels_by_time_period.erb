@@ -32,7 +32,7 @@
 
 <div class="ruport">
 	<% if((defined? @table) && !@table.data.empty?) %>
-		<%= @table.to_html.html_safe %>
+		<%= @table.to_html.sub("<table>", "<table class='table'>").html_safe %>
 	<% else %>
 		<em>No data to display</em>
 	<% end %>
