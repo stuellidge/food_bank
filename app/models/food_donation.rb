@@ -1,4 +1,6 @@
 class FoodDonation < ActiveRecord::Base
+  acts_as_reportable
+  
   after_update :update_weight
   after_create :create_weight
   after_destroy :delete_weight  
