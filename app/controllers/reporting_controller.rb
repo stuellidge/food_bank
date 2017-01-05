@@ -24,7 +24,7 @@ class ReportingController < ApplicationController
         @to_date = params[:to_date]
       end
       
-      conditions_string = 'created_at >= :from_date AND created_at <= :to_date'
+      conditions_string = 'date >= :from_date AND date <= :to_date'
       conditions_values = {:from_date => @from_date, :to_date => @to_date}         
       
       @table = FoodParcel.report_table(:all, :methods => :household_name, :only => [:date, :weight], 
@@ -121,6 +121,10 @@ class ReportingController < ApplicationController
       
       @table = join.report_table(:all, :only => [:donor_name, :food_donations_count, :weight])
       @table.column_names = ['Donor', 'Food Donations Count', 'Weight']
+      total_count = @table.column('Food Donations Count').inject(0) {|sum, x| sum + x.to_i }
+      total_weight = @table.column('Weight').inject(0) {|sum, x| sum + x.to_d }
+      @table << { 'Food Donations Count' => total_count, 'Weight' => total_weight}
+
     end
       
   end
@@ -129,7 +133,7 @@ class ReportingController < ApplicationController
     @from_date = 1.month.ago.strftime("%Y-%m-%d") 
     @to_date = DateTime.now.strftime("%Y-%m-%d")
     @donors = Donor.order(:name).all.collect {|p| [ p.name, p.id ] }
-    
+    @donor = @donors[0]
     
     if(params.has_key? :donor)
       @donor = params[:donor]
