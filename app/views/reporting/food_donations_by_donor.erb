@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1>Food Donations By Time Period</h1>
+</div>
+
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
+
+<%= form_tag url_for(controller => :reporting, :action => :food_donations_by_donor), :class=>"form-horizontal" do %>
+
+  <div class="control-group">
+    <%= label_tag(:from_date, t(:from_date), :class => 'control-label') %>
+    <div class="controls">
+      <%= text_field_tag :from_date, @from_date, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :to_date, t(:to_date), :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :to_date, @to_date, :class => 'text_field', 'data-behaviour' => 'datepicker' %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= label_tag :donor, t(:donor), :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag :donor, options_for_select(@donors, selected: @donor), {:include_blank => true} %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag nil, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="ruport">
+	<% if((defined? @table) && !@table.data.empty?) %>
+		<%= @table.to_html.sub("<table>", "<table class='table'>").html_safe %>
+	<% else %>
+		<em>No data to display</em>
+	<% end %>
+</div>
+<br/>
