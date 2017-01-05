@@ -2,7 +2,7 @@ class DonorsController < ApplicationController
   # GET /donors
   # GET /donors.json
   def index
-    @donors = Donor.all
+    @donors = Donor.paginate :page => params[:page], :per_page => 20, :order => :name
 
     respond_to do |format|
       format.html # index.html.erb

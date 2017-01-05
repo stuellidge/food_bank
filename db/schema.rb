@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20130521211037) do
   add_index "food_parcels", ["household_id"], :name => "index_food_parcels_on_household_id"
 
   create_table "households", :force => true do |t|
-    t.integer  "address_id"
     t.boolean  "disability"
     t.text     "reason"
     t.date     "referral_date"
@@ -114,8 +113,6 @@ ActiveRecord::Schema.define(:version => 20130521211037) do
     t.text     "comments"
     t.integer  "food_parcels_count",       :default => 0, :null => false
   end
-
-  add_index "households", ["address_id"], :name => "index_households_on_address_id"
 
   create_table "occupants", :force => true do |t|
     t.string   "title"

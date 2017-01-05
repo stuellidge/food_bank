@@ -2,9 +2,10 @@ class HouseholdsController < ApplicationController
   # GET /households
   # GET /households.json
   def index
-    @households = Household.all :include => "primary_occupant", :order => "occupants.surname, occupants.forename"
-    @autocomplete_items = @households.collect { |household| household.to_s }
-    @household_matrix = Hash[@households.collect { |household| [household.to_s, household.id] }]
+    @households = Household.paginate :include => "primary_occupant", :order => "occupants.surname, occupants.forename", :page => params[:page], :per_page => 10
+    all_houses = Household.all
+    @autocomplete_items = all_houses.collect { |household| household.to_s }
+    @household_matrix = Hash[all_houses.collect { |household| [household.to_s, household.id] }]
 
     respond_to do |format|
       format.html # index.html.erb
