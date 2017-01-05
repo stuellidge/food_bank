@@ -11,6 +11,8 @@
     </tr>
   </thead>
   <tbody>
+	<%= page_entries_info @donors %>
+	<%= will_paginate @donors, :renderer => BootstrapPagination::Rails %>	  
     <% @donors.each do |donor| %>
       <tr>
         <td><%= link_to donor.name, donor_path(donor) %></td>
