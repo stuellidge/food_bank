@@ -39,6 +39,7 @@ gem "sorcery"
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'alphabetical_paginate'
 
 gem 'ruport'
 gem 'acts_as_reportable'

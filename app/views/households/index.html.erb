@@ -27,8 +27,10 @@
     </tr>
   </thead>
   <tbody>
-	<%= page_entries_info @households %>
-	<%= will_paginate @households, :renderer => BootstrapPagination::Rails %>
+	<!-- %= page_entries_info @households % -->
+	<!-- %= will_paginate @households, :renderer => BootstrapPagination::Rails % -->
+	<%= alphabetical_paginate @alphaParams %>
+	<div id="pagination_table">
     <% @households.each do |household| %>
       <tr>
         <td><%= link_to household.primary_occupant, household_path(household) %></td>
@@ -46,6 +48,7 @@
         </td>
       </tr>
     <% end %>
+	</div>
   </tbody>
 </table>
 
