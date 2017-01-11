@@ -4,9 +4,9 @@ class HouseholdsController < ApplicationController
   def index
     #@households = Household.paginate :include => "primary_occupant", :order => "occupants.surname, occupants.forename", :page => params[:page], :per_page => 10
     
-    @households, @alphaParams = Household.all.alpha_paginate(params[:letter]){|household| household.primary_occupant.surname}
-    
-    all_houses = Household.all
+    all_houses = Household.eager_load(:primary_occupant, :address)
+    @households, @alphaParams = all_houses.alpha_paginate(params[:letter]){|household| household.primary_occupant.surname}
+        
     @autocomplete_items = all_houses.collect { |household| household.to_s }
     @household_matrix = Hash[all_houses.collect { |household| [household.to_s, household.id] }]
 
