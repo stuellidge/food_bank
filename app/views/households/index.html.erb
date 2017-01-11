@@ -30,6 +30,7 @@
 	<!-- %= page_entries_info @households % -->
 	<!-- %= will_paginate @households, :renderer => BootstrapPagination::Rails % -->
 	<%= alphabetical_paginate @alphaParams %>
+	<br/>
 	<div id="pagination_table">
     <% @households.each do |household| %>
       <tr>
