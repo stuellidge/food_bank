@@ -8,7 +8,8 @@ if(typeof autocomplete_items != 'undefined') {
     updater: function(item) {
       $('#household-form-id').val(household_matrix[item]);
       return item;
-    }
+    },
+	items: 20
   });  
 }
 
