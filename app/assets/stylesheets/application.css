@@ -13,10 +13,6 @@
  *= require bootstrap-datepicker
  */
 
-div.containter {
-  margin-top: 50px;
-}
-
  input[type="text"].in_error {
    border: 2px solid #B94A48;
  }
