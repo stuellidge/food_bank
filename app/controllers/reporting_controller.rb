@@ -14,6 +14,34 @@ class ReportingController < ApplicationController
     redirect_to :controller => 'reporting', :action => :weight_total
   end
   
+  def inactive_households
+    @to_date = DateTime.now.prev_year.strftime("%Y-%m-%d")
+        
+    if(params.has_key? :to_date)
+      @to_date = params[:to_date]
+      
+      conditions_string = 'max(food_parcels.date) <= :to_date'
+      conditions_values = {:to_date => @to_date}         
+                  
+      if(params.has_key? :delete)
+        records = Household.joins(:food_parcels)
+                            .group("households.id")
+                            .having(conditions_string, conditions_values).destroy_all 
+        @deleted = records.length
+      else
+        join = Household.joins(:food_parcels)
+                        .select("households.id, max(food_parcels.date) as last_parcel_date")
+                        .group("households.id")
+                        .having(conditions_string, conditions_values)
+                        .order("last_parcel_date DESC")
+                        
+        @table = join.report_table(:all, :methods => :to_s, :only => [:last_parcel_date])
+        @table.reorder("to_s", "last_parcel_date") unless @table.column_names.empty?      
+        @table.column_names = ['Household', 'Last Parcel Date']
+      end
+    end
+  end  
+  
   def parcels_by_time_period
     @from_date = 1.month.ago.strftime("%Y-%m-%d") 
     @to_date = DateTime.now.strftime("%Y-%m-%d") 

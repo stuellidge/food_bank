@@ -33,6 +33,7 @@ FoodBank::Application.routes.draw do
   match 'reporting/households_with_multiple_parcels_by_time_period', :to => 'reporting#households_with_multiple_parcels_by_time_period', :via => [:get, :post]
   match 'reporting/food_donations_by_time_period', :to => 'reporting#food_donations_by_time_period', :via => [:get, :post]
   match 'reporting/food_donations_by_donor', :to => 'reporting#food_donations_by_donor', :via => [:get, :post]
+    match 'reporting/inactive_households', :to => 'reporting#inactive_households', :via => [:get, :post]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
